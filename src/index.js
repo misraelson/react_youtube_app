@@ -37,9 +37,10 @@ class App extends Component {
 // this <div> is jsx that is happening inside this function, it will get turned into HTML and rendered in the document
 // this () => defines a function in ES6
   render() {
+    const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 300);
     return (
       <div>
-        <SearchBar onSearchTermChange={term => this.videoSearch(term)} />
+        <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
